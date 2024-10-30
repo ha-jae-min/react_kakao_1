@@ -8,6 +8,15 @@ const auth_code_path = `https://kauth.kakao.com/oauth/authorize`
 
 const access_token_url = 'https://kauth.kakao.com/oauth/token'
 
+const host = 'http://localhost:8080/api/v1/member/kakao'
+
+export const getMemberWithAccessToken = async (accessToken:string) => {
+
+    const res = await axios.get(`${host}?accessToken=${accessToken}`)
+
+    return res.data
+}
+
 export const getKakaoLoginLink = () => {
 
     const kakaoURL = `${auth_code_path}?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`

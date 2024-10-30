@@ -1,7 +1,7 @@
 
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
-import {getAccessToken} from "../../api/kakaoAPI.ts";
+import {getAccessToken, getMemberWithAccessToken} from "../../api/kakaoAPI.ts";
 
 function KakaoRedirectPage() {
 
@@ -13,8 +13,16 @@ function KakaoRedirectPage() {
 
         if(authCode != null) {
 
-            getAccessToken(authCode).then(res => {
-                console.log(res)
+            getAccessToken(authCode).then(accessToken => {
+
+                console.log(accessToken)
+
+                getMemberWithAccessToken(accessToken).then(result => {
+
+                    console.log("=====================");
+
+                    console.log(result);
+                })
             })
         }
 
